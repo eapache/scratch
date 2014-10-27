@@ -4,11 +4,23 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/signal"
+	"runtime/pprof"
 
 	"github.com/Shopify/sarama"
 )
 
 func main() {
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, os.Interrupt)
+
+	f, err := os.Create("profile")
+	if err != nil {
+		log.Fatal(err)
+	}
+	pprof.StartCPUProfile(f)
+	defer pprof.StopCPUProfile()
+
 	clientConfig := sarama.NewClientConfig()
 	client, err := sarama.NewClient("client_id", []string{"192.168.100.67:6667"}, clientConfig)
 	if err != nil {
@@ -40,7 +52,9 @@ func main() {
 			}
 		case err := <-producer.Errors():
 			fmt.Println(err)
-			os.Exit(1)
+			return
+		case <-sig:
+			return
 		}
 	}
 }
