@@ -31,9 +31,7 @@ func main() {
 	defer client.Close()
 
 	sarama.Logger = log.New(os.Stdout, "[Sarama] ", log.LstdFlags)
-	sarama.MaxRequestSize = 37 * 1024 * 1024
 	producerConfig := sarama.NewProducerConfig()
-	producerConfig.MaxMessageBytes = 1000000
 	producerConfig.Compression = sarama.CompressionSnappy
 	producer, err := sarama.NewProducer(client, producerConfig)
 	if err != nil {
