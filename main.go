@@ -9,7 +9,8 @@ import (
 )
 
 func main() {
-	client, err := sarama.NewClient("client_id", []string{"localhost:9092"}, nil)
+	clientConfig := sarama.NewClientConfig()
+	client, err := sarama.NewClient("client_id", []string{"192.168.100.67:6667"}, clientConfig)
 	if err != nil {
 		panic(err)
 	} else {
@@ -28,9 +29,15 @@ func main() {
 	}
 	defer producer.Close()
 
+	i := 0
 	for {
 		select {
 		case producer.Input() <- &sarama.MessageToSend{Topic: "my_topic", Key: nil, Value: sarama.ByteEncoder(make([]byte, 1024))}:
+			i++
+			if i >= 10000 {
+				fmt.Println("batch")
+				i = 0
+			}
 		case err := <-producer.Errors():
 			fmt.Println(err)
 			os.Exit(1)
