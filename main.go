@@ -42,7 +42,9 @@ func main() {
 	i := 0
 	for {
 		select {
+		// default:
 		case producer.Input() <- &sarama.MessageToSend{Topic: "my_topic", Key: nil, Value: sarama.ByteEncoder(make([]byte, 1024))}:
+			// producer.QueueMessage("my_topic", nil, sarama.ByteEncoder(make([]byte, 1024)))
 			i++
 			if i >= 10000 {
 				fmt.Println("batch")
@@ -50,7 +52,6 @@ func main() {
 			}
 		case err := <-producer.Errors():
 			fmt.Println(err)
-			return
 		case <-sig:
 			return
 		}
