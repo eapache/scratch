@@ -37,7 +37,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer producer.Close()
+	defer func() {
+		fmt.Println(producer.Close())
+	}()
 
 	i := 0
 	for {
