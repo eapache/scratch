@@ -17,32 +17,34 @@ type SomeError {
   # Path to input field which caused the error.
   field: [String!]
 
-  # Check to see if has
+  # Check to see if has new
   hasThing(
-    # The ID of the thing to check.
+    # The ID of the thing to check. new
     id: ID!
   ): Boolean!
 }
 
-# Units of measurements
+# Units of measurements new
 enum WeightUnit {
-  # Metric system
+  # Metric system new
   GRAMS
 
   # Imperial system
   OUNCES
 }
 
-# foo
+# foo new
 input DoTheInputDance {
-  # bar
+  # bar new
   clientMutationId: String
 }
 
-# ba
+# ba new
 interface SomeInterface {
-  # Globally unique identifier.
+  # Globally unique identifier. new
   id: ID!
-  hasThing: Boolean!
+  hasThing(
+  # FOO
+  id: ID!): Boolean!
 }
 
