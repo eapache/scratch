@@ -43,6 +43,8 @@ input DoTheInputDance {
 interface SomeInterface {
   # Globally unique identifier. new
   id: ID!
-  hasThing: Boolean!
+  hasThing(
+  # FOO
+  id: ID!): Boolean!
 }
 
