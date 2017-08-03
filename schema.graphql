@@ -48,3 +48,14 @@ interface SomeInterface {
   id: ID!): Boolean!
 }
 
+# a
+type SomeNewTypeThing {
+  # b
+  andNewField: Bool!
+}
+
+# c
+enum NewEnum {
+  # d
+  VALUE
+}
