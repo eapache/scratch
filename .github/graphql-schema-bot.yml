@@ -1,0 +1,3 @@
+ Defaults:
+  Include:
+    - "schema.graphql"
