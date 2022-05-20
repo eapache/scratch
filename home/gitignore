@@ -1,0 +1,6 @@
+.bundle
+.starscope.db
+.*.swp
+.*.swo
+tags
+cscope.out

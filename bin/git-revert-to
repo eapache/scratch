@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for i in `git rev-list --merges $1..HEAD` ; do
+    git revert --no-edit -m 1 $i
+done

@@ -1,0 +1,32 @@
+# on new machines, find the specific shell file (e.g. ubuntu-bash-rc) and
+# put `source ~/Dropbox/Config/home/$NAME` at the bottom of `~/.zshrc` or `~/.bashrc`
+# or whatever
+
+# initialize fasd
+eval "$(fasd --init auto)"
+
+# environment vars
+export EDITOR='vim'
+export GOPATH=~
+export PATH=$PATH:~/Dropbox/Config/bin
+
+# core aliases
+alias ..="cd .."
+alias l="ls -lah"
+alias v="vim"
+
+# bundler aliases
+alias be="bundle exec"
+alias brk="bundle exec rake"
+alias binst="bundle install"
+
+# git aliases
+alias g="git"
+alias gb="git branch"
+alias gl="git pull"
+alias grba="git rebase --abort"
+alias grbc="git rebase --continue"
+
+# misc aliases
+alias cs="cscope -cR"
+alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
