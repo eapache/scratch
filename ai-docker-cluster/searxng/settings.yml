@@ -1,0 +1,18 @@
+use_default_settings: true
+
+server:
+  bind_address: 0.0.0.0
+  port: 8080
+  secret_key: "local-only-change-me"
+  limiter: false
+  image_proxy: false
+  public_instance: false
+
+search:
+  formats:
+    - json
+  safe_search: 0
+
+ui:
+  query_in_title: true
+  static_use_hash: true
